@@ -19,7 +19,9 @@ RUN apt-get update && \
 	apt-get install unifi-video
 
 RUN echo '#!/bin/bash\n\
-chown root:root /var/lib/unifi-video\n\
+chown unifi-video:unifi-video /var/lib/unifi-video\n\
+apt-get update\n\
+apt-get install -y --only-upgrade unifi-video\n\
 chmod 755 /var/lib/unifi-video\n\
 sed -i /ulimit/d /usr/sbin/unifi-video\n\
 /usr/sbin/unifi-video --debug -D start' > /run.sh && chmod +x /run.sh
@@ -29,6 +31,6 @@ VOLUME /var/lib/unifi-video/
 # RTMP, RTMPS & RTSP via the controller
 EXPOSE 1935/tcp 7444/tcp 7447/tcp 6666/tcp 7442/tcp 7004/udp 7080/tcp 7443/tcp 7445/tcp 7446/tcp
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/run.sh"]
 
 
