@@ -20,9 +20,9 @@ RUN apt-get update && \
 
 RUN echo '#!/bin/bash\n\
 chown unifi-video:unifi-video /var/lib/unifi-video\n\
+chmod 755 /var/lib/unifi-video\n\
 apt-get update\n\
 apt-get install -y --only-upgrade unifi-video\n\
-chmod 755 /var/lib/unifi-video\n\
 sed -i /ulimit/d /usr/sbin/unifi-video\n\
 /usr/sbin/unifi-video --debug -D start' > /run.sh && chmod +x /run.sh
 

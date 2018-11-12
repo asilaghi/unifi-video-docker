@@ -2,5 +2,5 @@
 Run Unifi Video Controller in docker
 
 Uses the official debian repo for unifi-video.
-Make sure you use the same numbers on the host as in the container when binding the exposed ports.
+Make sure you use the same numbers on the host as in the container when binding the exposed ports, or use host networking.
 Note that Unifi Video Controller will be updated at  startup!
